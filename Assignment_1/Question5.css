@@ -1,0 +1,41 @@
+body {background-image: url("lamborghini.jpg");}
+h1 {
+    color: white; 
+    width: 70%; 
+    text-align: center; 
+    border: 10px; 
+    padding: 10px; 
+    border-style: double; 
+    margin-left: auto; 
+    margin-right: auto;}
+table {
+    border: 15px; 
+    width: 75%; 
+    border-style: dashed dotted double solid; 
+    border-color: whitesmoke; 
+    margin-left: auto; 
+    margin-right: auto;}
+#models {background-color: #ffb5f5;}
+li.mechanical {
+	padding: 10px 0 10px 30px;
+	list-style: none;
+	background-image: url(lamborghini_logo.jpg);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 25px;
+}
+#specifications {background-color: #e0b5ff;}
+#elemento {background-color: #910303;}
+#urus {background-color: #f3ff05;}
+#huracan {background-color: #ff8f17;}
+#aventador {background-color: #19fc34;}
+#elementoSpec {background-color: #c24242;}
+#urusSpec {background-color: #feffb0}
+#huracanSpec {background-color: #ffd0a3;}
+#aventadorSpec {background-color: #b8ffb5;}
+#modelsList {list-style: upper-roman; list-style-position: inside;}
+.model {text-align: center; padding: 10px;}
+.spec {list-style: upper-alpha;}
+.drivability {list-style: circle;}
+a {color: white; font-size: large;}
+footer {text-align: center;}

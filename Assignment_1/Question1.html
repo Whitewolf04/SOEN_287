@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Question 1</title>
+        <Style>
+            ol {list-style: decimal;}
+            ol.Nested1 {list-style: upper-alpha;}
+            ol.Nested2 {list-style: lower-roman;}
+            ul.Nested22 {list-style: square;}
+            ul.Nested222 {list-style: circle;}
+            ul.Nested3 {list-style: disc;}
+        </Style>
+    </head>
+
+    <body>
+        <h1>List Example</h1>
+
+        <ol>
+            <li>List Item 1
+                <ol class="Nested1">
+                    <li>Nested item 1.1</li>
+                    <li>Nested item 1.2</li>
+                </ol>
+            </li>
+            <li>List Item 2
+                <ol class="Nested2">
+                    <li>Nested item 2.2</li>
+                    <li>Nested item 2.2
+                        <ul class="Nested22">
+                            <li>Nested item 2.2.1</li>
+                            <li>Nested item 2.2.2
+                                <ul class="Nested222">
+                                    <li>Nested item 2.2.2.1</li>
+                                    <li>Nested item 2.2.2.2</li>
+                                </ul>
+                            </li>
+                            <li>Nested item 2.2.3</li>
+                        </ul>
+                    </li>
+                    <li>Nested item 2.3</li>
+                </ol>
+            </li>
+            <li>List Item 3
+                <ul class="Nested3">
+                    <li>Item1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </li>
+        </ol>
+
+        <dl>
+            <dt>COMP 376</dt>
+            <dd>Introduction to Game Programming</dd>
+            <dt>SOEN 287</dt>
+            <dd>Web Programming</dd>
+        </dl>
+
+        <p>This is a <sup>5</sup>test<sub>9</sub> for Assignment 1.</p>
+    </body>
+</html>

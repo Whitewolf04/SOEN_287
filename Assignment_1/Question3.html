@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Question 3</title>
+    </head>
+
+    <body>
+        <h1>Apartment Search</h1>
+
+        <form action="">
+            <fieldset>
+                <legend>Occupant's Information</legend>
+                <label for="name">Occupant's Name</label><br>
+                <input type="text" id="name" placeholder="First name">
+                <input type="text" id="name" placeholder="Last name"><br>
+                <br>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Format: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+                <br>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="email address">
+            </fieldset><br>
+            <fieldset>
+                <legend>Apartment Information:</legend>
+                <label for="apSize">Choose apartment size</label><br>
+                <select id="apSize" value="Studio">
+                    <option value="Studio">Studio</option>
+                    <option value="31/2">3 1/2</option>
+                    <option value="41/2">4 1/2</option>
+                    <option value="51/2">5 1/2</option>
+                    <option value="61/2">6 1/2</option>
+                </select><br>
+                <br>
+
+                <label>Rental Term:</label><br>
+                <input type="radio" id="short" value="short" checked>
+                <label for="short">Short Term</label><br>
+                <input type="radio" id="long" value="long">
+                <label for="long">Long Term</label><br>
+                <input type="radio" id="both" value="both">
+                <label for="both">Both are OK</label><br>
+                <br>
+
+                <label>Features:</label><br>
+                <input type="checkbox" id="balcony" value="balcony" checked>
+                <label for="balcony">Balcony</label>
+                <input type="checkbox" id="highFloor" value="highFloor">
+                <label for="highFloor">Higher Floor</label>
+                <input type="checkbox" id="elevator" value="elevator">
+                <label for="elevator">Proximity to Elevators</label><br>
+                <br>
+
+                <label>Start date:</label><br>
+                <input type="date" id="startDate"><br>
+                <br>
+
+                <label>Special Request:</label><br>
+                <textarea placeholder="Please specify any special request you might have." rows="4" cols="50"></textarea>
+            </fieldset>
+            <p>Let us find you the apartment of your dream</p>
+            <input type="submit" id="submit" value="Submit">
+            <input type="reset" id="reset" value="Start over">
+        </form>
+    </body>
+</html>

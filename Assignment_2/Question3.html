@@ -1,0 +1,114 @@
+<html>
+
+<head>
+	<title>Question 3</title>
+	<link rel="stylesheet" type = "text/css" href="map.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin="">
+
+			var mymap = null;      	
+		</script>
+	<style type="text/css">
+		#map {
+			height: 400px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="mapid" style="width: 100%; height: 800px;"></div><br />
+
+	<form>
+		<fieldset>
+			<legend>Search Address</legend>
+			<table border="0" cellspacing="6px">
+				<tr>
+					<td colspan="2"><input type="text" id="address"
+							value="1100 Boulevard Robert-Bourassa #104, Montreal, Quebec H3B 3A5" style="width: 100%"/></td>
+					<td><button onclick="addr_search(); return false">Submit</button></td>
+				</tr>
+				<tr>
+					<td>
+						<label>Lattitude</label><br />
+						<input type="text" id="lat" />
+					</td>
+					<td>
+						<label>Longitude</label><br />
+						<input type="text" id="long" />
+					</td>
+				</tr>
+			</table>
+			<p id="message"></p>
+		</fieldset>
+	</form>
+
+	<script type="text/javascript">
+
+		//Initialize Map	
+		var ConcordiaLat = 45.495675;
+		var ConcordiaLong = -73.578667;
+
+		//mapid is the id for your div element
+		//You can leave the rest as it is
+		mymap = L.map('mapid').setView([ConcordiaLat, ConcordiaLong], 14.5);
+		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+				'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1
+		}).addTo(mymap);
+
+		L.circleMarker([ConcordiaLat, ConcordiaLong], {color: "#35d100"}).addTo(mymap);
+		L.circle([ConcordiaLat, ConcordiaLong], {color: "#35d100", radius: "1000"}).addTo(mymap);
+
+		//CODE TO CHANGE ADDRESS TO LATLONG
+		//https://www.w3schools.com/js/js_ajax_http_response.asp
+		//https://wiki.openstreetmap.org/wiki/FR:Nominatim
+		//There is also the reverse search from lat long to address
+		function addr_search() {
+			var addr = document.getElementById('address').value;
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + addr;
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = JSON.parse(this.responseText);
+					var lat = myArr[0].lat;
+					var long = myArr[0].lon;
+
+					L.circleMarker([lat, long], {color: "#c91100"}).addTo(mymap);
+					document.getElementById('lat').value = lat;
+					document.getElementById('long').value = long;
+
+					//Create markers from the info
+					var ConcordiaLatlng = L.latLng(ConcordiaLat, ConcordiaLong);
+					var UserLatlng = L.latLng(lat, long);
+					var latlngs = [ConcordiaLatlng, UserLatlng];
+
+					//Use Polyline to draw line on map
+					var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
+					mymap.fitBounds(polyline.getBounds()); //This code can be deleted if unnecessary
+
+					//Compute Distance
+					var distance = (ConcordiaLatlng.distanceTo(UserLatlng)).toFixed(0)/1000;
+					var message = "Your distance from Concordia University is " + distance + " km";
+					document.getElementById('message').innerHTML = message;
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+
+
+
+	</script>
+
+</body>
+
+</html>

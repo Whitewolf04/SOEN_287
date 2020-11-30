@@ -14,7 +14,7 @@ function startTimer(duration) {
         document.getElementById('timer').innerHTML = minutes + ":" + seconds;
         --timer;
 
-        if (timer == 28) {
+        if (timer == 0) {
             var r = confirm("Do you want to extend the timer?");
             if (r == true) {
                 count++;
@@ -41,4 +41,4 @@ function startTimer(duration) {
     }, 1000);
 }
 
-startTimer(35);
+startTimer(4);
